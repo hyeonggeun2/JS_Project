@@ -11,7 +11,7 @@ body {
 
 .space {
   margin: 0 auto;
-  background-image: url(omok.jpg);
+  background-image: url(../image/omok.jpg);
   background-size: contain;
   width: 760px;
   height: 760px;
