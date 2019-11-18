@@ -16,7 +16,7 @@ const drowSpace = () => {
   let space = new Array(SIZE);
   for (let i = 0; i < SIZE; i++)
     space[i] = new Array(SIZE);
-  
+
   for (let i = 0; i < SIZE; i++){
     html += '<tr>'
     for (let j = 0; j < SIZE; j++){
@@ -78,7 +78,7 @@ const check33 = (id, color) => {
   checkRightDiagonal(id, color, checkArr);
   checkHorizon(id, color, checkArr);
   checkVertical(id, color, checkArr);
-  
+
   for (let i = 0; checkArr[i] !== undefined; i++){
     if (checkArr[i] === 3) res++;
   }
@@ -89,7 +89,7 @@ const check33 = (id, color) => {
 $space.onclick = ({ target }) => {
   let [row, col] = target.id.split(',');
   if(!target.classList.contains('space-box') || target.innerHTML) return;
-  
+
   if(state === 1){
     target.innerHTML = '<div class="black-circle"></div>';
     stateArr[+row + 1][+col + 1] = 1
@@ -100,8 +100,33 @@ $space.onclick = ({ target }) => {
     stateArr[+row + 1][+col + 1] = 2
     state = 1;
   }
+  active()
   victory(target.id, stateArr[+row + 1][+col + 1]);
   check33(target.id, stateArr[+row + 1][+col + 1]);
 };
+
+function active() {
+  if (state === 1 ) {
+    document.querySelector('.player-2-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+  } else {
+    document.querySelector('.player-1-panel').classList.toggle('active');
+    document.querySelector('.player-2-panel').classList.toggle('active');
+  }
+}
+
+document.querySelector('.btn-new').addEventListener('click', init);
+
+function init() {
+  window.location.reload();
+
+  // activePlayer = 1;
+
+  // document.querySelector('.player-1-panel').classList.remove('active');
+  // document.querySelector('.player-2-panel').classList.remove('active');
+
+  // document.querySelector('.player-1-panel').classList.add('active');
+}
+
 
 window.onload = drowSpace;
